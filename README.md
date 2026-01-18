@@ -212,4 +212,4 @@ Tested on a label - 250x128 BWR EPA.
 
 ## License
 
-Copyright (C) 2024-2025 Andrei Ivanov MIT License(see LICENSE file). All rights reserved.
+Copyright (C) 2026 Andrei Ivanov MIT License(see LICENSE file). All rights reserved.
