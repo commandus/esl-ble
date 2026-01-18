@@ -1,0 +1,5 @@
+add_test(NAME test-specific-data COMMAND "test-specific-data")
+add_test(NAME test-discover COMMAND "test-discover")
+add_test(NAME test-get-size COMMAND "test-get-size")
+add_test(NAME test-send-figure COMMAND "test-send-figure")
+add_test(NAME test-png COMMAND "test-png")
