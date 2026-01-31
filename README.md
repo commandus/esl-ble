@@ -204,6 +204,14 @@ See the license in the LICENSE file.
 
 Tested on a label - 250x128 BWR EPA.
 
+## How to make an bitmap image
+
+For instance, you can use magick:
+
+```shell
+magick -size 250x128 xc:red -draw "fill white rectangle 0,64 249,128 fill black rectangle 0,0 125,64 font Arial font-size 36 fill white text 134,44 '$42.99' text  8,44 'SALE!' fill black text 2,94 'Green bananas' font-size 14 text 4, 120 'Organic product. Best before 11/12/26'" example250x128.png
+```
+
 ## Links
 
 - [Federico Poli. Gicisky Bluetooth ESL e-paper tag](https://github.com/fpoli/gicisky-tag)
@@ -212,4 +220,6 @@ Tested on a label - 250x128 BWR EPA.
 
 ## License
 
-Copyright (C) 2026 Andrei Ivanov MIT License(see LICENSE file). All rights reserved.
+MIT License(see LICENSE file).
+
+Copyright (C) 2026 Andrei Ivanov . All rights reserved.

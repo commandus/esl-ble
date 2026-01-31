@@ -184,12 +184,23 @@ WinRT требует компилятора с C++17 стандартом.
 
 Проверялась на метке - ценнике 250x128 BWR EPA.
 
+## Как создать файл картинки ценника 
+
+Можно использовать, например, программу magick:
+
+```shell
+magick -size 250x128 xc:red -draw "fill white rectangle 0,64 249,128 fill black rectangle 0,0 125,64 font Arial font-size 36 fill white text 134,44 '$42.99' text  8,44 'SALE!' fill black text 2,94 'Green bananas' font-size 14 text 4, 120 'Organic product. Best before 11/12/26'" example250x128.png
+```
+
 ## Ссылки
 
 - [Federico Poli. Gicisky Bluetooth ESL e-paper tag](https://github.com/fpoli/gicisky-tag)
 - [zhihu.com. Протокол Bluetooth-тегов электронных этикеток полок Peake Smart](https://zhuanlan.zhihu.com/p/633113543)
 - [Andrew  Graham. Picksmart/GiCiSky Electronic Shelf Label Image Uploader](https://shelflabels.andrewgraham.dev/)
 
-## License
 
-Copyright (C) 2026 Andrei Ivanov MIT License (see LICENSE file). All rights reserved.
+## Лицензтя
+
+MIT License (see LICENSE file). All rights reserved.
+
+Copyright (C) 2026 Andrei Ivanov. All rights reserved.
