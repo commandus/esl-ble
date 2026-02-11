@@ -1,5 +1,6 @@
 #include <sstream>
 #include <winrt/windows.storage.streams.h>
+#include <iostream>
 
 #include "platform.h"
 #include "ble-helper-win.h"
@@ -376,8 +377,12 @@ int BLEHelper::open(
 
     // get service
     winrt::Windows::Devices::Bluetooth::GenericAttributeProfile::GattDeviceServicesResult result = wimpl->dev.GetGattServicesForUuidAsync(serviceUUID).get();
-    if (result.Status() != winrt::Windows::Devices::Bluetooth::GenericAttributeProfile::GattCommunicationStatus::Success)
+    if (result.Status() != winrt::Windows::Devices::Bluetooth::GenericAttributeProfile::GattCommunicationStatus::Success) {
+        std::cerr << "Error "
+                  << gattCommunicationStatus2string(result.Status())
+                  << " getting service " << UUIDToString(serviceUUID) << std::endl;
         return -1;
+    }
     wimpl->service = result.Services().GetAt(0);
 
     // get characteristics

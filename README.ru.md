@@ -201,6 +201,6 @@ magick -size 250x128 xc:red -draw "fill white rectangle 0,64 249,128 fill black 
 
 ## Лицензтя
 
-MIT License (see LICENSE file). All rights reserved.
+MIT License (see LICENSE file).
 
 Copyright (C) 2026 Andrei Ivanov. All rights reserved.
