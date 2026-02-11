@@ -372,7 +372,7 @@ int BLEHelper::open(
     if (session.CanMaintainConnection())
         session.MaintainConnection(true);
     session.SessionStatusChanged([this, device](const winrt::Windows::Devices::Bluetooth::GenericAttributeProfile::GattSession &session, const winrt::Windows::Foundation::IInspectable &status) {
-        device->sessionOn = session.SessionStatus() == winrt::Windows::Devices::Bluetooth::GenericAttributeProfile::GattSessionStatus::Active;
+        device->deviceState = session.SessionStatus() == winrt::Windows::Devices::Bluetooth::GenericAttributeProfile::GattSessionStatus::Active ? DS_SESSION_ON : DS_RUNNING;
     });
 
     // get service
@@ -404,7 +404,7 @@ int BLEHelper::open(
         auto notifyToken = wimpl->characteristic[0].ValueChanged({ this, &BLEHelper::commandCharacteristicValueChanged });
 
     } catch (winrt::hresult_error const &ex) {
-        device->sessionOn = false;
+        device->deviceState = DS_IDLE;
         success = false;
     }
 
@@ -413,6 +413,8 @@ int BLEHelper::open(
         pair(device);
     } else
         delete wimpl;
+    if (device->deviceState != DS_SESSION_ON)
+        device->deviceState = DS_RUNNING;
     return 0;
 }
 
@@ -420,7 +422,7 @@ int BLEHelper::close(
     DiscoveredDevice *device
 )
 {
-    device->sessionOn = false;
+    device->deviceState = DS_IDLE;
     BLEDeviceImplWin *wimpl = (BLEDeviceImplWin *) device->impl;
     if (wimpl) {
         try {
@@ -445,7 +447,7 @@ int BLEHelper::read(
     uint32_t size,
     int milliseconds
 ) {
-    if (!device->sessionOn)
+    if (device->deviceState == DS_IDLE)
         return -1;
     BLEDeviceImplWin* wimpl = (BLEDeviceImplWin*) device->impl;
     if (!wimpl)
@@ -477,7 +479,7 @@ int BLEHelper::write(
     void *buf,
     uint32_t size
 ) {
-    if (!device->sessionOn)
+    if (device->deviceState == DS_IDLE)
         return -1;
     BLEDeviceImplWin* wimpl = (BLEDeviceImplWin*) device->impl;
     if (!wimpl)

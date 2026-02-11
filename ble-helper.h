@@ -18,6 +18,12 @@ enum CharacteristicIndex {
 class BLEDeviceImpl {
 };
 
+enum DeviceState {
+    DS_IDLE = 0,
+    DS_RUNNING,
+    DS_SESSION_ON
+};
+
 class DiscoveredDevice {
 public:
     /// Bluetooth address ff:ff:<dd>:<dd>:<dd>:<dd>
@@ -31,7 +37,7 @@ public:
     /// device name
     std::string name;
     /// session open or closed
-    bool sessionOn;
+    DeviceState deviceState;
     /// OS specific implementation
     BLEDeviceImpl *impl;
 

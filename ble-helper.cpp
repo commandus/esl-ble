@@ -47,7 +47,7 @@ ReceivedData::~ReceivedData() {
 }
 
 DiscoveredDevice::DiscoveredDevice()
-    : addr(0), dt(std::chrono::system_clock::now()), rssi(0), sessionOn(false),
+    : addr(0), dt(std::chrono::system_clock::now()), rssi(0), deviceState(DS_IDLE),
     impl(nullptr)
 {
 
@@ -59,7 +59,7 @@ DiscoveredDevice::DiscoveredDevice(
     const NEMR5053ManufacturerSpecificData &aMetadata,
     const std::string &aName
 )
-    : addr(aAddr), dt(std::chrono::system_clock::now()), rssi(aRssi), metadata(aMetadata), name(aName),
+    : addr(aAddr), dt(std::chrono::system_clock::now()), rssi(aRssi), metadata(aMetadata), name(aName), deviceState(DS_IDLE),
     impl(nullptr)
 {
 
