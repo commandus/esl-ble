@@ -80,7 +80,7 @@ int packSRgb8(
                 else {
                     bool black = (color->r + color->g + color->b) < 150;
                     if (!black)
-                        setBitOn(dstBW, heightInBytes, x, y);;
+                        setBitOn(dstBW, heightInBytes, x, y);
                 }
             }
             color++;
