@@ -422,8 +422,11 @@ int BLEDiscoverer::sendBuffer(
         auto sz = nextOfs - chunkOfs;
         for (int i = 0; i < stepTryCount; i++) {
             chunkNum = writeChunk(device, chunkNum, buffer, chunkOfs, sz, waitMs);
-            if (chunkNum >= 0 || chunkNum == -8)
+            if (chunkNum >= 0 || chunkNum == -8) {
+                r = true;
                 break;
+            }
+            r = false;
         }
         if (!r)
             return -4;
