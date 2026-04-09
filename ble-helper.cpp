@@ -410,9 +410,6 @@ int BLEDiscoverer::sendBuffer(
         return -3;
 
     uint32_t chunkSize = blockSize - 4;
-    int chunksCount = (int) (size / chunkSize);
-    if (size % chunkSize)
-        chunksCount++;
     int chunkNum = 0;
     while (chunkNum >= 0) {
         auto chunkOfs = chunkNum * chunkSize;
